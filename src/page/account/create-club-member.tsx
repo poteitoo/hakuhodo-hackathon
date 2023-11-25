@@ -69,7 +69,11 @@ export const CreateClubMemberPage = () => {
                 width="full"
                 maxW={{ md: "3xl" }}
               >
-                <Avatar size="lg" name={username} src={imageSrc} />
+                <Avatar
+                  size="lg"
+                  name={username}
+                  src={typeof imageSrc === "string" ? imageSrc : undefined}
+                />
                 <input
                   type="file"
                   className="file-input file-input-ghost w-full"
@@ -79,7 +83,7 @@ export const CreateClubMemberPage = () => {
                     if (file) {
                       const reader = new FileReader();
                       reader.onload = (event) => {
-                        setImageSrc(event.target.result);
+                        setImageSrc(event.target?.result || null);
                       };
                       reader.readAsDataURL(file);
                     }
